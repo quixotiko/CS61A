@@ -35,8 +35,6 @@ def num_eights(x):
             return num_eights(x // 10)
 
 
-
-
 def pingpong(n):
     """Return the nth element of the ping-pong sequence.
 
@@ -70,6 +68,38 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    # flag = True
+    # i = 1
+    # count = 0
+    # while i <= n:
+    #     if flag:
+    #         count += 1
+    #     else:
+    #         count -= 1
+
+    #     if num_eights(i) != 0 or i % 8 == 0:
+    #         flag = not flag
+    #     i += 1
+    # return count
+
+    def helper(index, ppvalue, flag):
+        if index == n:
+            return ppvalue
+        else:
+            if flag:
+                if num_eights(index) > 0 or (index)% 8 == 0:
+                    return helper(index + 1, ppvalue - 1, not flag)
+                else:
+                    return helper(index + 1, ppvalue + 1, flag)
+            else:
+                if num_eights(index) > 0 or (index)% 8 == 0:
+                    return helper(index + 1, ppvalue + 1, not flag)
+                else:
+                    return helper(index + 1, ppvalue - 1, flag)
+
+
+    return helper(1, 1, True)
+        
 
 
 def missing_digits(n):
